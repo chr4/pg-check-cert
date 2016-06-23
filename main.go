@@ -22,14 +22,23 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"os"
 	"time"
 )
 
 func main() {
+	if len(os.Args) != 2 {
+		fmt.Printf("Usage: %s <host:port>\n", os.Args[0])
+		os.Exit(1)
+	}
+
+	pgHost := os.Args[1]
+
 	var err error
 	cn := &conn{}
 
-	cn.c, err = net.Dial("tcp", "127.0.0.1:5432")
+	// TODO:
+	cn.c, err = net.Dial("tcp", pgHost)
 	if err != nil {
 		panic(err)
 	}
