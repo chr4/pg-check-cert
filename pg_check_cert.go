@@ -53,7 +53,7 @@ func main() {
 	client := tls.Client(cn.c, &tlsConf)
 
 	expiresIn := cn.expiresIn(client, &tlsConf)
-	fmt.Printf("Certificate expires in %d days\n", expiresIn)
+	fmt.Println(expiresIn)
 }
 
 // Check how many days the certificate is still valid
@@ -65,11 +65,6 @@ func (cn *conn) expiresIn(client *tls.Conn, tlsConf *tls.Config) int {
 	certs := client.ConnectionState().PeerCertificates
 
 	expiresIn := certs[0].NotAfter.Sub(time.Now())
-
-	// Panic if we're running out of time!
-	if expiresIn < 14*24*time.Hour {
-		panic("Certificate expires in less then two weeks")
-	}
 
 	// Convert days to int
 	return int(expiresIn.Hours() / 24)
