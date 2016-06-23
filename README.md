@@ -8,7 +8,7 @@ Something similar can be done using [this python script](https://github.com/thus
 ## Build
 
 ```shell
-go build pg_check_cert.go buf.go conn.go
+go build -o pg_check_cert *.go
 ```
 
 ## Usage
