@@ -18,7 +18,7 @@ go build -o pg-check-cert *.go
 
 ## Usage
 ```shell
-./pg-check-cert 127.0.0.1:5432
+pg-check-cert localhost:5432
 ```
 
 ## Thanks
